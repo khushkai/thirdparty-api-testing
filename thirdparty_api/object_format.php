@@ -53,13 +53,13 @@ print_r(array_slice($data, 0, 5))
     // Loop through all countries and display their details
     $data = json_decode($response); // Object
     foreach ($data as $country) {
-        $country_name = $country['name']['common'] ?? 'N/A';
-        $capital = $country['capital'][0] ?? 'N/A';
-        $region = $country['region'] ?? 'N/A';
-        $population = number_format($country['population'] ?? 0);
-        $area = number_format($country['area'] ?? 0);
-        $flag = $country['flags']['png'] ?? '';
-        
+        $country_name = $country->name->common ?? 'N/A';
+        $capital = $country->capital[0] ?? 'N/A';
+        $region = $country->region ?? 'N/A';
+        $population = number_format($country->population ?? 0);
+        $area = number_format($country->area ?? 0);
+        $flag = $country->flags->png ?? '';
+    
         echo "<tr>";
         echo "<td>" . $country_name . "</td>";
         echo "<td>" . $capital . "</td>";
@@ -69,6 +69,8 @@ print_r(array_slice($data, 0, 5))
         echo "<td><img src='" . $flag . "' alt='Flag' width='50' height='30'></td>";
         echo "</tr>";
     }
+    
+    
     ?>
 </table>
 </body>
